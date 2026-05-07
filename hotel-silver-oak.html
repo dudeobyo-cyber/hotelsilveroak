@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Silver Oak – Queen of Hills, Ooty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --moss: #2d4a2d;
+    --sage: #5a7a4a;
+    --mist: #c8d8b8;
+    --cream: #f5f0e8;
+    --bark: #7a5c3a;
+    --gold: #c9a84c;
+    --fog: rgba(200,216,184,0.15);
+    --dark: #1a2a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: transparent;
+    transition: background 0.4s, backdrop-filter 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(26,42,26,0.92);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600;
+    color: #fff; letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.85); font-size: 0.8rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    height: 100vh; position: relative;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(160deg, rgba(26,42,26,0.82) 0%, rgba(45,74,45,0.55) 60%, rgba(26,42,26,0.75) 100%),
+      url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80') center/cover no-repeat;
+    transform: scale(1.05);
+    animation: heroZoom 18s ease-in-out infinite alternate;
+  }
+  @keyframes heroZoom {
+    from { transform: scale(1.05); }
+    to   { transform: scale(1.12); }
+  }
+  .hero-badge {
+    position: relative; color: var(--gold);
+    font-size: 0.7rem; letter-spacing: 0.3em;
+    text-transform: uppercase; margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.8rem;
+    animation: fadeUp 1s ease both;
+  }
+  .hero-badge::before, .hero-badge::after {
+    content: ''; display: block;
+    width: 40px; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    position: relative;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 300; color: #fff;
+    text-align: center; line-height: 1;
+    letter-spacing: 0.02em;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--mist);
+  }
+  .hero-sub {
+    position: relative; color: rgba(255,255,255,0.7);
+    font-size: 0.85rem; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-top: 1.5rem;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+  .hero-cta {
+    position: relative; margin-top: 2.5rem;
+    display: flex; gap: 1rem;
+    animation: fadeUp 1s 0.6s ease both;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--dark);
+    padding: 0.85rem 2.2rem; font-size: 0.8rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; font-weight: 500;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover { background: #e0bc5e; transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.5); color: #fff;
+    padding: 0.85rem 2.2rem; font-size: 0.8rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { border-color: #fff; transform: translateY(-2px); }
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(255,255,255,0.5); font-size: 0.65rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    animation: fadeUp 1s 1s ease both;
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* ── QUICK INFO STRIP ── */
+  .strip {
+    background: var(--moss);
+    display: flex; justify-content: center;
+    flex-wrap: wrap; gap: 0;
+  }
+  .strip-item {
+    padding: 1.2rem 2.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.85);
+  }
+  .strip-item:last-child { border-right: none; }
+  .strip-icon { font-size: 1rem; color: var(--gold); }
+  .strip-text { font-size: 0.78rem; letter-spacing: 0.08em; }
+  .strip-text strong { display: block; color: #fff; font-size: 0.85rem; }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.65rem; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--sage);
+    margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; max-width: 60px;
+    height: 1px; background: var(--sage);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--moss);
+  }
+  .section-title em { font-style: italic; color: var(--bark); }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center;
+  }
+  .about-img-wrap {
+    position: relative; height: 550px;
+  }
+  .about-img-main {
+    width: 78%; height: 420px;
+    object-fit: cover;
+    position: absolute; bottom: 0; left: 0;
+    box-shadow: 12px 20px 60px rgba(26,42,26,0.2);
+  }
+  .about-img-accent {
+    width: 55%; height: 260px;
+    object-fit: cover;
+    position: absolute; top: 0; right: 0;
+    box-shadow: 8px 12px 40px rgba(26,42,26,0.15);
+    border: 4px solid var(--cream);
+  }
+  .about-badge {
+    position: absolute; bottom: 30px; right: 10px;
+    background: var(--moss); color: #fff;
+    padding: 1.2rem 1.5rem; text-align: center;
+    z-index: 2;
+  }
+  .about-badge .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; color: var(--gold); line-height: 1;
+  }
+  .about-badge .lbl { font-size: 0.65rem; letter-spacing: 0.15em; opacity: 0.8; text-transform: uppercase; }
+  .about-text { padding: 2rem 0; }
+  .about-text p {
+    color: #555; line-height: 1.9;
+    margin: 1.5rem 0; font-size: 0.95rem;
+  }
+  .about-features {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 2rem;
+  }
+  .feat-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.8rem; color: var(--moss);
+    letter-spacing: 0.05em;
+  }
+  .feat-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+  }
+
+  /* ── ROOMS ── */
+  .rooms-section {
+    background: var(--dark);
+    color: #fff;
+  }
+  .rooms-section .section-title { color: var(--mist); }
+  .rooms-section .section-label { color: var(--gold); }
+  .rooms-section .section-label::after { background: var(--gold); }
+  .rooms-section > p {
+    color: rgba(255,255,255,0.6); max-width: 500px;
+    line-height: 1.8; margin: 1rem 0 3rem; font-size: 0.9rem;
+  }
+  .rooms-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .room-card {
+    position: relative; overflow: hidden;
+    cursor: pointer; group: true;
+  }
+  .room-card img {
+    width: 100%; height: 300px; object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+    filter: brightness(0.8);
+  }
+  .room-card:hover img { transform: scale(1.06); filter: brightness(0.9); }
+  .room-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+  }
+  .room-type {
+    font-size: 0.65rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .room-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; color: #fff; font-weight: 400;
+  }
+  .room-price {
+    margin-top: 0.5rem; font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+  }
+  .room-price strong { color: var(--gold); font-size: 1rem; }
+  /* full-width card */
+  .rooms-grid .room-card.wide {
+    grid-column: 1 / -1;
+  }
+  .rooms-grid .room-card.wide img { height: 360px; }
+
+  /* ── AMENITIES ── */
+  .amenities-section {
+    background: var(--cream);
+    text-align: center;
+  }
+  .amenities-section .section-label { justify-content: center; }
+  .amenities-section .section-label::after { display: none; }
+  .amenities-section .section-label::before {
+    content: ''; flex: 1; max-width: 60px;
+    height: 1px; background: var(--sage);
+  }
+  .amenities-section > p {
+    max-width: 500px; margin: 1rem auto 3rem;
+    color: #666; line-height: 1.8; font-size: 0.9rem;
+  }
+  .amenities-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem; max-width: 900px; margin: 0 auto;
+  }
+  .amenity-card {
+    background: #fff; padding: 2rem 1.2rem;
+    border: 1px solid rgba(90,122,74,0.15);
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .amenity-card::before {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold); transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .amenity-card:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(26,42,26,0.1); }
+  .amenity-card:hover::before { transform: scaleX(1); }
+  .amenity-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+  .amenity-name {
+    font-size: 0.78rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--moss); font-weight: 500;
+  }
+
+  /* ── LOCATION ── */
+  .location-section {
+    background: linear-gradient(135deg, var(--moss) 0%, #1a3a1a 100%);
+    color: #fff;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center;
+  }
+  .location-section .section-title { color: #fff; }
+  .location-section .section-label { color: var(--gold); }
+  .location-section .section-label::after { background: var(--gold); }
+  .location-section > div > p {
+    color: rgba(255,255,255,0.65); line-height: 1.8;
+    margin: 1.2rem 0 2rem; font-size: 0.9rem;
+  }
+  .attractions { list-style: none; }
+  .attractions li {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.85rem;
+  }
+  .attr-dist {
+    background: rgba(201,168,76,0.2); color: var(--gold);
+    padding: 0.2rem 0.6rem; font-size: 0.7rem;
+    letter-spacing: 0.1em; white-space: nowrap;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+  .map-embed {
+    width: 100%; border-radius: 0;
+    overflow: hidden; box-shadow: 30px 30px 80px rgba(0,0,0,0.4);
+  }
+  .map-embed iframe {
+    width: 100%; height: 420px; border: none; display: block;
+  }
+
+  /* ── GALLERY ── */
+  .gallery-section {
+    background: var(--cream); padding: 6rem 0;
+  }
+  .gallery-header { padding: 0 4rem 3rem; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 220px 220px;
+    gap: 8px; padding: 0 4rem;
+  }
+  .gal { overflow: hidden; }
+  .gal img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease; display: block;
+  }
+  .gal:hover img { transform: scale(1.05); }
+  .g1 { grid-column: 1/5; }
+  .g2 { grid-column: 5/9; }
+  .g3 { grid-column: 9/13; }
+  .g4 { grid-column: 1/4; }
+  .g5 { grid-column: 4/8; }
+  .g6 { grid-column: 8/13; }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--dark); color: #fff;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .contact-section .section-title { color: #fff; }
+  .contact-section .section-label { color: var(--gold); }
+  .contact-section .section-label::after { background: var(--gold); }
+  .contact-section > div > p {
+    color: rgba(255,255,255,0.55); line-height: 1.8;
+    margin: 1rem 0 2.5rem; font-size: 0.9rem;
+  }
+  .contact-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+  }
+  .contact-icon {
+    width: 40px; height: 40px;
+    border: 1px solid rgba(201,168,76,0.4);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-detail { font-size: 0.85rem; }
+  .contact-detail strong {
+    display: block; color: #fff; margin-bottom: 0.2rem;
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .contact-detail span { color: rgba(255,255,255,0.65); line-height: 1.7; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-form input, .contact-form textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff; padding: 0.9rem 1.2rem;
+    font-family: 'Jost', sans-serif; font-size: 0.85rem;
+    width: 100%; outline: none;
+    transition: border-color 0.3s;
+  }
+  .contact-form input:focus, .contact-form textarea:focus {
+    border-color: var(--gold);
+  }
+  .contact-form input::placeholder, .contact-form textarea::placeholder {
+    color: rgba(255,255,255,0.3);
+  }
+  .contact-form textarea { resize: none; height: 120px; }
+  .contact-form .btn-primary { border: none; cursor: pointer; width: 100%; font-family: 'Jost', sans-serif; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0f1a0f; padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: #fff; letter-spacing: 0.05em;
+  }
+  .footer-logo span { color: var(--gold); }
+  footer p { color: rgba(255,255,255,0.35); font-size: 0.75rem; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    color: rgba(255,255,255,0.4); font-size: 0.75rem;
+    text-decoration: none; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── WHATSAPP FLOAT ── */
+  .whatsapp-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 998;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+    cursor: pointer; text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: waPulse 2.5s ease-in-out infinite;
+  }
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(37,211,102,0.7);
+    animation: none;
+  }
+  .whatsapp-float svg {
+    width: 32px; height: 32px; fill: #fff;
+  }
+  @keyframes waPulse {
+    0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,0.5); }
+    50% { box-shadow: 0 6px 30px rgba(37,211,102,0.8), 0 0 0 8px rgba(37,211,102,0.1); }
+  }
+  .wa-tooltip {
+    position: absolute; right: 70px;
+    background: #fff; color: #333;
+    padding: 0.4rem 0.8rem; font-size: 0.75rem;
+    white-space: nowrap; border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  }
+  .whatsapp-float:hover .wa-tooltip { opacity: 1; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    section { padding: 4rem 1.5rem; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .about, .location-section, .contact-section {
+      grid-template-columns: 1fr; gap: 3rem;
+    }
+    .about-img-wrap { height: 320px; }
+    .rooms-grid { grid-template-columns: 1fr; }
+    .rooms-grid .room-card.wide { grid-column: auto; }
+    .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; padding: 0 1.5rem; }
+    .g1,.g2,.g3,.g4,.g5,.g6 { grid-column: auto; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+    .strip { flex-direction: column; }
+    .strip-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">Hotel <span>Silver Oak</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#rooms">Rooms</a></li>
+    <li><a href="#amenities">Amenities</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-badge">Ooty, Tamil Nadu, India</div>
+  <h1>Hotel<br><em>Silver Oak</em></h1>
+  <p class="hero-sub">Queen of Hills · 6,500 ft above sea level</p>
+  <div class="hero-cta">
+    <a href="tel:094438 98484" class="btn-primary">Book Now</a>
+    <a href="#about" class="btn-outline">Explore</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- QUICK INFO STRIP -->
+<div class="strip">
+  <div class="strip-item">
+    <div class="strip-icon">⭐</div>
+    <div class="strip-text"><strong>3.7 / 5</strong>918+ Reviews</div>
+  </div>
+  <div class="strip-item">
+    <div class="strip-icon">🕛</div>
+    <div class="strip-text"><strong>Check-in 12:00 PM</strong>Check-out 12:00 PM</div>
+  </div>
+  <div class="strip-item">
+    <div class="strip-icon">🌿</div>
+    <div class="strip-text"><strong>Heart of Ooty</strong>250m from Charing Cross</div>
+  </div>
+  <div class="strip-item">
+    <div class="strip-icon">🍽️</div>
+    <div class="strip-text"><strong>In-house Restaurant</strong>Sumukha's Kitchen</div>
+  </div>
+  <div class="strip-item">
+    <div class="strip-icon">🚗</div>
+    <div class="strip-text"><strong>Free Parking</strong>Private on-site</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img-wrap reveal">
+    <img class="about-img-main" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80" alt="Hotel exterior">
+    <img class="about-img-accent" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="Hotel room">
+    <div class="about-badge">
+      <div class="num">27+</div>
+      <div class="lbl">Rooms &<br>Cottages</div>
+    </div>
+  </div>
+  <div class="about-text reveal">
+    <div class="section-label">Our Story</div>
+    <h2 class="section-title">Rest Well at the<br><em>Heart of Hills</em></h2>
+    <p>Nestled in the misty embrace of the Nilgiri Mountains at 6,500 feet above sea level, Hotel Silver Oak is Ooty's finest budget retreat. Just 250 metres from Charing Cross and 1 km from the railway station, we place you at the very pulse of this legendary hill station.</p>
+    <p>From our contemporary-styled Deluxe and Executive rooms to our charming private cottages, every space is designed with warmth, comfort, and the spirit of the Blue Mountains in mind. We also offer exclusive Nilgiri products — teas, dry fruits, spices, and natural oils — as cherished souvenirs of your stay.</p>
+    <div class="about-features">
+      <div class="feat-item"><div class="feat-dot"></div> 13 Deluxe Rooms</div>
+      <div class="feat-item"><div class="feat-dot"></div> 6 Executive Rooms</div>
+      <div class="feat-item"><div class="feat-dot"></div> Private Cottages</div>
+      <div class="feat-item"><div class="feat-dot"></div> Nilgiri Products Shop</div>
+      <div class="feat-item"><div class="feat-dot"></div> 24-hr Room Service</div>
+      <div class="feat-item"><div class="feat-dot"></div> Free Wi-Fi</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section class="rooms-section" id="rooms">
+  <div class="section-label reveal">Accommodation</div>
+  <h2 class="section-title reveal">Choose Your<br><em>Perfect Retreat</em></h2>
+  <p class="reveal">From cosy single rooms to spacious family cottages — each space thoughtfully furnished for your comfort in the hills.</p>
+  <div class="rooms-grid">
+    <div class="room-card reveal">
+      <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80" alt="Deluxe Room">
+      <div class="room-info">
+        <div class="room-type">Standard</div>
+        <div class="room-name">Deluxe Room</div>
+        <div class="room-price">Starting from <strong>₹3,939</strong> / night</div>
+      </div>
+    </div>
+    <div class="room-card reveal">
+      <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=700&q=80" alt="Executive Room">
+      <div class="room-info">
+        <div class="room-type">Premium</div>
+        <div class="room-name">Executive Room</div>
+        <div class="room-price">Starting from <strong>₹4,555</strong> / night</div>
+      </div>
+    </div>
+    <div class="room-card reveal">
+      <img src="https://images.unsplash.com/photo-1568495248636-6432b97bd949?w=700&q=80" alt="Cottage">
+      <div class="room-info">
+        <div class="room-type">Family Stay</div>
+        <div class="room-name">Private Cottage</div>
+        <div class="room-price">Starting from <strong>₹5,490</strong> / night</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="amenities-section" id="amenities">
+  <div class="section-label reveal">Facilities</div>
+  <h2 class="section-title reveal">Everything You<br><em>Need & More</em></h2>
+  <p class="reveal">Thoughtful amenities to make your stay in Ooty perfectly comfortable and memorable.</p>
+  <div class="amenities-grid">
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">🍽️</div>
+      <div class="amenity-name">Restaurant</div>
+    </div>
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">📶</div>
+      <div class="amenity-name">Free Wi-Fi</div>
+    </div>
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">🅿️</div>
+      <div class="amenity-name">Free Parking</div>
+    </div>
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">🕐</div>
+      <div class="amenity-name">24hr Front Desk</div>
+    </div>
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">🛎️</div>
+      <div class="amenity-name">Room Service</div>
+    </div>
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">👨‍⚕️</div>
+      <div class="amenity-name">Doctor on Call</div>
+    </div>
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">🧳</div>
+      <div class="amenity-name">Tour Desk</div>
+    </div>
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">👚</div>
+      <div class="amenity-name">Laundry Service</div>
+    </div>
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">❄️</div>
+      <div class="amenity-name">Air Conditioning</div>
+    </div>
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">🏦</div>
+      <div class="amenity-name">Banquet Hall</div>
+    </div>
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">☕</div>
+      <div class="amenity-name">Electric Kettle</div>
+    </div>
+    <div class="amenity-card reveal">
+      <div class="amenity-icon">🔒</div>
+      <div class="amenity-name">CCTV Security</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" id="location">
+  <div class="reveal">
+    <div class="section-label">Location</div>
+    <h2 class="section-title">At the Heart of<br><em>Queen of Hills</em></h2>
+    <p>Ettines Road, near Alankar Theatre, Ooty — perfectly positioned for exploring everything this legendary hill station has to offer.</p>
+    <ul class="attractions">
+      <li>
+        <span class="attr-dist">250m</span>
+        Charing Cross Town Centre
+      </li>
+      <li>
+        <span class="attr-dist">500m</span>
+        Ooty Rose Garden
+      </li>
+      <li>
+        <span class="attr-dist">1 km</span>
+        Railway Station & Bus Stand
+      </li>
+      <li>
+        <span class="attr-dist">1.7 km</span>
+        Government Botanical Gardens
+      </li>
+      <li>
+        <span class="attr-dist">3 km</span>
+        Doddabetta Peak
+      </li>
+      <li>
+        <span class="attr-dist">2.4 km</span>
+        Ooty Lake
+      </li>
+      <li>
+        <span class="attr-dist">8 km</span>
+        Ketti Railway Station
+      </li>
+    </ul>
+  </div>
+  <div class="map-embed reveal">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.2!2d76.7063727!3d11.4085414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8bdf507e5213b%3A0x53a1b9c7d605305f!2sHotel%20Silver%20Oak!5e0!3m2!1sen!2sin!4v1"
+      allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header">
+    <div class="section-label reveal">Gallery</div>
+    <h2 class="section-title reveal">A Glimpse of<br><em>Silver Oak Life</em></h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gal g1 reveal"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Ooty hills"></div>
+    <div class="gal g2 reveal"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&q=80" alt="Hotel lobby"></div>
+    <div class="gal g3 reveal"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="Room"></div>
+    <div class="gal g4 reveal"><img src="https://images.unsplash.com/photo-1567636788276-40a47795ba4d?w=600&q=80" alt="Tea"></div>
+    <div class="gal g5 reveal"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Food"></div>
+    <div class="gal g6 reveal"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80" alt="Forest"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="reveal">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-title">Plan Your<br><em>Perfect Stay</em></h2>
+    <p>Ready to experience the magic of Ooty? Reach out to us directly for the best rates and personalised service.</p>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail">
+          <strong>Address</strong>
+          <span>Ettines Road, Rose Garden Road,<br>Near Alankar Theatre, Ooty,<br>Tamil Nadu – 643001</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div class="contact-detail">
+          <strong>Phone</strong>
+          <span><a href="tel:094438 98484" style="color:inherit;text-decoration:none;">094438 98484</a></span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <div class="contact-detail">
+          <strong>Website</strong>
+          <span><a href="https://hotelsilveroak.in" target="_blank" style="color:inherit;text-decoration:none;">hotelsilveroak.in</a></span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">💬</div>
+        <div class="contact-detail">
+          <strong>WhatsApp</strong>
+          <span><a href="https://wa.me/919443898484" target="_blank" style="color:#25D366;text-decoration:none;">+91 9443898484</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="reveal">
+    <div class="contact-form">
+      <input type="text" placeholder="Your Name">
+      <input type="text" placeholder="Phone / Email">
+      <input type="text" placeholder="Check-in & Check-out Dates">
+      <input type="text" placeholder="Number of Guests">
+      <textarea placeholder="Any special requests or questions..."></textarea>
+      <a href="https://wa.me/919443898484?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20a%20booking%20at%20Hotel%20Silver%20Oak%2C%20Ooty." target="_blank" class="btn-primary" style="text-align:center;display:block;padding:1rem;">
+        Send via WhatsApp ✉️
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Hotel <span>Silver Oak</span> · Ooty</div>
+  <p>© 2026 Hotel Silver Oak. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#rooms">Rooms</a>
+    <a href="#contact">Contact</a>
+    <a href="https://hotelsilveroak.in" target="_blank">Official Site</a>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a class="whatsapp-float" href="https://wa.me/919443898484?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20a%20booking%20at%20Hotel%20Silver%20Oak%2C%20Ooty." target="_blank" aria-label="Chat on WhatsApp">
+  <div class="wa-tooltip">Chat with us</div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), 80);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
